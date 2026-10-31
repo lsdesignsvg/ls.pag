@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portafolio de diseños realizados por LS Designs.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://djesusmedinaofficial.github.io/ls_designs/disenos.html">
+    <meta property="og:title" content="Diseños realizados | LS Designs">
+    <meta property="og:description" content="Explora los diseños deportivos, corporativos e institucionales de LS Designs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://djesusmedinaofficial.github.io/ls_designs/disenos.html">
+    <meta property="og:image" content="https://djesusmedinaofficial.github.io/ls_designs/portada1.jpg">
+    <link rel="icon" type="image/png" href="logo-ls-designs.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <title>Diseños realizados | LS Designs</title>
+    <style>
+        :root {
+            --bg: #060606;
+            --panel: rgba(18, 18, 18, 0.9);
+            --white: #ffffff;
+            --muted: #a8a8a8;
+            --accent: #ff002b;
+            --border: rgba(255, 255, 255, 0.12);
+            --display: 'Orbitron', 'Arial Black', sans-serif;
+            --body: 'Inter', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            min-width: 320px;
+            background: radial-gradient(circle at 50% 0%, #1a0307 0%, var(--bg) 48%);
+            color: var(--white);
+            font-family: var(--body);
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(120deg, rgba(255, 0, 43, 0.06), transparent 42%);
+            z-index: -1;
+        }
+
+        .page-header {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 28px 0 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .brand {
+            color: var(--white);
+            font: 900 0.9rem var(--display);
+            letter-spacing: 3px;
+            text-decoration: none;
+        }
+
+        .brand span { color: var(--accent); }
+
+        .back-link {
+            color: var(--muted);
+            font: 600 0.68rem var(--display);
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+        .back-link:hover { color: var(--white); }
+
+        main {
+            width: min(1120px, calc(100% - 40px));
+            margin: 0 auto;
+            padding: 64px 0 100px;
+        }
+
+        .eyebrow {
+            margin: 0 0 12px;
+            color: var(--accent);
+            font: 700 0.7rem var(--display);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 720px;
+            margin: 0;
+            font: 900 clamp(2rem, 6vw, 4.5rem) var(--display);
+            letter-spacing: 0;
+            line-height: 1.08;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            max-width: 570px;
+            margin: 20px 0 42px;
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .design-card-trigger:focus-visible,
+        .close:focus-visible,
+        .back-link:focus-visible,
+        .brand:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .design-card { min-width: 0; }
+        .design-card.hidden { display: none; }
+
+        .design-card-trigger {
+            display: block;
+            width: 100%;
+            padding: 0;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--panel);
+            cursor: zoom-in;
+        }
+
+        .design-card-trigger:hover { border-color: var(--accent); }
+
+        .design-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+
+        .card-tag {
+            display: block;
+            padding: 12px 2px 0;
+            color: var(--muted);
+            font: 600 0.68rem var(--display);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            place-items: center;
+            padding: 24px;
+            background: rgba(0, 0, 0, 0.9);
+            display: grid;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 240ms ease, visibility 0s linear 240ms;
+        }
+
+        .lightbox.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition-delay: 0s;
+        }
+        .lightbox img {
+            max-width: min(900px, 100%);
+            max-height: 85vh;
+            object-fit: contain;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            transform: scale(0.96);
+            transition: transform 240ms ease;
+        }
+        .lightbox.open img { transform: scale(1); }
+        .close {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            width: 42px;
+            height: 42px;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            background: #151515;
+            color: var(--white);
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 720px) {
+            .page-header, main { width: min(100% - 28px, 1120px); }
+            main { padding-top: 42px; }
+            .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+        }
+
+        @media (max-width: 420px) {
+            .page-header { align-items: flex-start; flex-direction: column; }
+            .gallery { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.001ms !important;
+                transition-duration: 0.001ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <a class="brand" href="index.html">LS <span>DESIGNS</span></a>
+        <a class="back-link" href="index.html">Volver al inicio</a>
+    </header>
+
+    <main>
+        <p class="eyebrow">Portafolio digital</p>
+        <h1>Diseños realizados</h1>
+        <p class="intro">Explora una selección de proyectos de sublimación deportiva, identidad corporativa y diseño institucional.</p>
+
+        <ul class="gallery">
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="chaqueta corta vientos2.webp" aria-label="Ampliar Chaqueta corta vientos 2"><img src="previews/chaqueta-corta-vientos-2.webp" alt="Chaqueta corta vientos 2" loading="lazy"></button><span class="card-tag">Chaqueta corta vientos 2</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="chaqueta corta vientos3.webp" aria-label="Ampliar Chaqueta corta vientos 3"><img src="previews/chaqueta-corta-vientos-3.webp" alt="Chaqueta corta vientos 3" loading="lazy"></button><span class="card-tag">Chaqueta corta vientos 3</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="chaqueta corta vientos4.webp" aria-label="Ampliar Chaqueta corta vientos 4"><img src="previews/chaqueta-corta-vientos-4.webp" alt="Chaqueta corta vientos 4" loading="lazy"></button><span class="card-tag">Chaqueta corta vientos 4</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey manga larga2.webp" aria-label="Ampliar Jersey manga larga 2"><img src="previews/jersey-manga-larga-2.webp" alt="Jersey manga larga 2" loading="lazy"></button><span class="card-tag">Jersey manga larga 2</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey manga larga3.webp" aria-label="Ampliar Jersey manga larga 3"><img src="previews/jersey-manga-larga-3.webp" alt="Jersey manga larga 3" loading="lazy"></button><span class="card-tag">Jersey manga larga 3</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey manga larga4.webp" aria-label="Ampliar Jersey manga larga 4"><img src="previews/jersey-manga-larga-4.webp" alt="Jersey manga larga 4" loading="lazy"></button><span class="card-tag">Jersey manga larga 4</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey manga larga5.webp" aria-label="Ampliar Jersey manga larga 5"><img src="previews/jersey-manga-larga-5.webp" alt="Jersey manga larga 5" loading="lazy"></button><span class="card-tag">Jersey manga larga 5</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey manga larga6.webp" aria-label="Ampliar Jersey manga larga 6"><img src="previews/jersey-manga-larga-6.webp" alt="Jersey manga larga 6" loading="lazy"></button><span class="card-tag">Jersey manga larga 6</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey4.webp" aria-label="Ampliar Jersey 4"><img src="previews/jersey-4.webp" alt="Jersey 4" loading="lazy"></button><span class="card-tag">Jersey 4</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey5.webp" aria-label="Ampliar Jersey 5"><img src="previews/jersey-5.webp" alt="Jersey 5" loading="lazy"></button><span class="card-tag">Jersey 5</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey6.webp" aria-label="Ampliar Jersey 6"><img src="previews/jersey-6.webp" alt="Jersey 6" loading="lazy"></button><span class="card-tag">Jersey 6</span></li>
+            <li class="design-card"><button type="button" class="design-card-trigger" data-full="jersey7.webp" aria-label="Ampliar Jersey 7"><img src="previews/jersey-7.webp" alt="Jersey 7" loading="lazy"></button><span class="card-tag">Jersey 7</span></li>
+        </ul>
+    </main>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightbox-title" aria-hidden="true">
+        <h2 id="lightbox-title" class="visually-hidden">Imagen ampliada</h2>
+        <button class="close" type="button" aria-label="Cerrar imagen">×</button>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        (() => {
+            const cards = document.querySelectorAll('.design-card');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = lightbox.querySelector('img');
+            const closeButton = lightbox.querySelector('.close');
+            let lastFocusedTrigger = null;
+
+            cards.forEach((card) => card.classList.remove('hidden'));
+
+            cards.forEach((card) => {
+                const trigger = card.querySelector('.design-card-trigger');
+                const image = trigger.querySelector('img');
+                trigger.addEventListener('click', () => {
+                    lastFocusedTrigger = trigger;
+                    lightboxImage.src = trigger.dataset.full;
+                    lightboxImage.alt = image.alt;
+                    lightbox.classList.add('open');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.style.overflow = 'hidden';
+                    closeButton.focus();
+                });
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('open');
+                lightbox.setAttribute('aria-hidden', 'true');
+                document.body.style.overflow = '';
+                window.setTimeout(() => {
+                    if (!lightbox.classList.contains('open')) lightboxImage.src = '';
+                }, 240);
+                if (lastFocusedTrigger) lastFocusedTrigger.focus();
+            };
+
+            closeButton.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && lightbox.classList.contains('open')) {
+                    closeLightbox();
+                    return;
+                }
+                if (event.key === 'Tab' && lightbox.classList.contains('open')) {
+                    event.preventDefault();
+                    closeButton.focus();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
